@@ -1,4 +1,4 @@
-package org.hoxton.zabbix;
+package org.hoxton.test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

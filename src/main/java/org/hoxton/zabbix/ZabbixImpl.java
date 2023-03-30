@@ -1,5 +1,6 @@
 package org.hoxton.zabbix;
 
+import org.hoxton.api.Host;
 import org.hoxton.api.Item;
 import org.hoxton.response.HostResponse;
 import org.hoxton.response.ItemResponse;
@@ -21,11 +22,21 @@ public class ZabbixImpl implements Zabbix {
 
     @Override
     public HostResponse getHostInfo() {
-        return host.getHostResponse(token, url);
+        return host.getHostResponse(token);
     }
 
     @Override
     public ItemResponse getItemInfo() {
         return item.getItemInfo(token, url);
+    }
+
+    @Override
+    public Item item() {
+        return item;
+    }
+
+    @Override
+    public Host host() {
+        return host;
     }
 }

@@ -11,6 +11,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.hoxton.builder.ZabbixBuilder;
 import org.hoxton.response.HostResponse;
 
 import java.io.FileReader;
@@ -24,13 +25,16 @@ import java.net.URISyntaxException;
  **/
 public class Host {
 
-    public HostResponse getHostResponse(String token,String url){
+
+
+    public HostResponse getHostResponse(String token) {
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode requestJson = getHostRequestBody(token);
         System.out.println("requestJson.toString() = " + requestJson.toString());
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpUriRequest build = RequestBuilder
-                    .get(new URI(url))
+                    .get(ZabbixBuilder.url)
                     .setEntity(new StringEntity(requestJson.toString()))
                     .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
                     .build();
@@ -39,11 +43,10 @@ public class Host {
             return hostResponse;
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
         }
 
     }
+
     private JsonNode getHostRequestBody(String token) {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode requestJson;
@@ -51,9 +54,6 @@ public class Host {
             requestJson = objectMapper.readTree(fileReader);
             ObjectNode paramsNode = objectMapper.createObjectNode();
             paramsNode.put("output", "extend");
-//            ArrayNode jsonNodes = paramsNode.putArray("selectInterfaces");
-//            jsonNodes.add("interfaceid");
-//            jsonNodes.add("ip");
             ((ObjectNode) requestJson).set("params", paramsNode);
             ((ObjectNode) requestJson).put("method", "host.get");
             ((ObjectNode) requestJson).put("auth", token);

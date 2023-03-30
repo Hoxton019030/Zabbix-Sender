@@ -10,18 +10,18 @@ import java.io.IOException;
 @Data
 public class ZabbixBuilder {
 
-    String user;
-    String password;
-    String auth;
-    String url;
+    public static String user;
+    public static String password;
+    public static String auth;
+    public static String url;
     Login login;
 
 
     public ZabbixBuilder(String user, String password, String url) {
-        this.user = user;
-        this.password = password;
-        this.url = url;
-        this.login =new Login();
+        ZabbixBuilder.user = user;
+        ZabbixBuilder.password = password;
+        ZabbixBuilder.url = url;
+        this.login = new Login();
     }
 
     public static ZabbixBuilder createDefault(String user, String password, String url) throws IOException {
@@ -29,8 +29,9 @@ public class ZabbixBuilder {
     }
 
     public Zabbix build() {
-        String loginToken = this.login.login(user,password,url);
-        return new ZabbixImpl(loginToken,url);
+        String loginToken = this.login.login();
+        auth = loginToken;
+        return new ZabbixImpl(loginToken, url);
 
     }
 

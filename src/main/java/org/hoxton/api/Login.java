@@ -10,27 +10,24 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.hoxton.builder.ZabbixBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Login {
 
     /**
-     * @param user     Zabbix Username
-     * @param password Zabbix Password
-     * @param url      your Zabbix uil
      * @return login token
      * <img src="https://i.imgur.com/qVcWItY.png" />
      */
-    public String login(String user, String password, String url) {
+    public String login() {
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode requestJson = getLoginRequestBody(user, password);
+        JsonNode requestJson = getLoginRequestBody(ZabbixBuilder.user, ZabbixBuilder.password);
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpUriRequest build = RequestBuilder
-                    .get(new URI(url))
+                    .get(ZabbixBuilder.url)
                     .setEntity(new StringEntity(requestJson.toString()))
                     .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
                     .build();
@@ -38,8 +35,6 @@ public class Login {
             JsonNode jsonNode = objectMapper.readTree(s);
             return jsonNode.get("result").asText();
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }

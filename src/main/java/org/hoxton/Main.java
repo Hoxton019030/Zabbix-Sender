@@ -1,9 +1,9 @@
 package org.hoxton;
 
-import org.hoxton.response.HostResponse;
-import org.hoxton.zabbix.Zabbix;
 import org.hoxton.builder.ZabbixBuilder;
-import org.hoxton.zabbix.ZabbixImpl;
+import org.hoxton.response.HostResponse;
+import org.hoxton.response.ItemResponse;
+import org.hoxton.zabbix.Zabbix;
 
 import java.io.IOException;
 
@@ -12,6 +12,8 @@ public class Main {
 
         Zabbix zabbix = ZabbixBuilder.createDefault("Admin", "zabbix", "http://localhost/api_jsonrpc.php").build();
         HostResponse hostInfo = zabbix.getHostInfo();
+        ItemResponse itemInfo = zabbix.getItemInfo();
+        System.out.println("itemInfo = " + itemInfo);
         System.out.println("hostInfo.toString() = " + hostInfo.toString());
 
 

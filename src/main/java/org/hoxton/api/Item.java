@@ -12,6 +12,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.hoxton.response.HostResponse;
+import org.hoxton.response.ItemResponse;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,11 +23,11 @@ import java.net.URISyntaxException;
  * @author Hoxton
  * @since 1.0.0
  **/
-public class Host {
+public class Item {
 
-    public HostResponse getHostResponse(String token,String url){
+    public ItemResponse getItemInfo(String token,String url){
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode requestJson = getHostRequestBody(token);
+        JsonNode requestJson = getItemRequestBody(token);
         System.out.println("requestJson.toString() = " + requestJson.toString());
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpUriRequest build = RequestBuilder
@@ -35,27 +36,24 @@ public class Host {
                     .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
                     .build();
             String s = EntityUtils.toString(httpClient.execute(build).getEntity());
-            HostResponse hostResponse = objectMapper.readValue(s, HostResponse.class);
+            ItemResponse hostResponse = objectMapper.readValue(s, ItemResponse.class);
             return hostResponse;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
-
     }
-    private JsonNode getHostRequestBody(String token) {
+
+    private JsonNode getItemRequestBody(String token) {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode requestJson;
         try (FileReader fileReader = new FileReader("src/main/java/org/hoxton/zabbix/zabbix-request.json")) {
             requestJson = objectMapper.readTree(fileReader);
             ObjectNode paramsNode = objectMapper.createObjectNode();
             paramsNode.put("output", "extend");
-//            ArrayNode jsonNodes = paramsNode.putArray("selectInterfaces");
-//            jsonNodes.add("interfaceid");
-//            jsonNodes.add("ip");
             ((ObjectNode) requestJson).set("params", paramsNode);
-            ((ObjectNode) requestJson).put("method", "host.get");
+            ((ObjectNode) requestJson).put("method", "item.get");
             ((ObjectNode) requestJson).put("auth", token);
         } catch (IOException e) {
             throw new RuntimeException(e);

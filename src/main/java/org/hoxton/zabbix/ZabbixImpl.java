@@ -6,7 +6,7 @@ import org.hoxton.response.HostResponse;
 import org.hoxton.response.ItemResponse;
 
 public class ZabbixImpl implements Zabbix {
-    final String token;l
+    final String token;
     final String url;
     public ZabbixImpl(String token, String url) {
         this.token = token;

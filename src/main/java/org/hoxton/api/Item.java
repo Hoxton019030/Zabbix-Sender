@@ -23,11 +23,12 @@ import java.net.URISyntaxException;
  * @author Hoxton
  * @since 1.0.0
  **/
-public class Item {
+public class Item extends ZabbixApiMethod{
     String url;
     String token;
 
     public Item(String url, String token) {
+        super(url, token);
         this.url = url;
         this.token = token;
     }
@@ -66,5 +67,10 @@ public class Item {
             throw new RuntimeException(e);
         }
         return requestJson;
+    }
+
+    public ItemResponse getItemInfo(int itemId) {
+
+        return null;
     }
 }

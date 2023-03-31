@@ -24,8 +24,15 @@ import java.net.URISyntaxException;
  * @since 1.0.0
  **/
 public class Item {
+    String url;
+    String token;
 
-    public ItemResponse getItemInfo(String token,String url){
+    public Item(String url, String token) {
+        this.url = url;
+        this.token = token;
+    }
+
+    public ItemResponse getItemInfo(String token, String url){
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode requestJson = getItemRequestBody(token);
         System.out.println("requestJson.toString() = " + requestJson.toString());

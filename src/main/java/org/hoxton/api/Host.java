@@ -1,8 +1,8 @@
 package org.hoxton.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -11,43 +11,34 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.hoxton.builder.ZabbixBuilder;
+import org.hoxton.api.request.ZabbixApiRequest;
 import org.hoxton.response.HostResponse;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * @author Hoxton
  * @since 1.0.0
  **/
-public class Host {
+public class Host extends ZabbixApiMethod {
 
-
-
-    public HostResponse getHostResponse(String token) {
-
+    public Host(String url, String token) {
+        super(url,token);
+    }
+    public HostResponse getHostResponse() {
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode requestJson = getHostRequestBody(token);
-        System.out.println("requestJson.toString() = " + requestJson.toString());
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            HttpUriRequest build = RequestBuilder
-                    .get(ZabbixBuilder.url)
-                    .setEntity(new StringEntity(requestJson.toString()))
-                    .setHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-                    .build();
-            String s = EntityUtils.toString(httpClient.execute(build).getEntity());
-            HostResponse hostResponse = objectMapper.readValue(s, HostResponse.class);
-            return hostResponse;
-        } catch (IOException e) {
+        JsonNode requestJson = getHostRequestBody();
+        String s1 = sendRequest(requestJson.toString());
+        try {
+            return objectMapper.readValue(s1, HostResponse.class);
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    private JsonNode getHostRequestBody(String token) {
+    private JsonNode getHostRequestBody() {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode requestJson;
         try (FileReader fileReader = new FileReader("src/main/java/org/hoxton/zabbix/zabbix-request.json")) {

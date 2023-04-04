@@ -1,5 +1,7 @@
-package org.hoxton.api.request;
+package org.hoxton.request.host;
 
+import org.hoxton.request.GetRequestCommonParams;
+import org.hoxton.request.ZabbixApiRequest;
 import org.hoxton.util.ZbxListUtils;
 
 import java.util.List;

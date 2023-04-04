@@ -1,4 +1,4 @@
-package org.hoxton.api.request;
+package org.hoxton.request;
 
 import java.util.Random;
 

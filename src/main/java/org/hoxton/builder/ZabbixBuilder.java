@@ -18,9 +18,9 @@ public class ZabbixBuilder {
 
 
     public ZabbixBuilder(String user, String password, String url) {
-        ZabbixBuilder.user = user;
-        ZabbixBuilder.password = password;
-        ZabbixBuilder.url = url;
+        this.user = user;
+        this.password = password;
+        this.url = url;
         this.login = new Login();
     }
 
@@ -29,9 +29,8 @@ public class ZabbixBuilder {
     }
 
     public Zabbix build() {
-        String loginToken = this.login.login();
-        auth = loginToken;
-        return new ZabbixImpl(loginToken, url);
+        auth = login.login();
+        return new ZabbixImpl(auth, url);
 
     }
 

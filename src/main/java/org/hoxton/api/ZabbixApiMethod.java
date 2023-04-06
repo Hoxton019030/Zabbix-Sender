@@ -26,7 +26,12 @@ public class ZabbixApiMethod {
         this.token = token;
     }
 
-    public String sendRequest(String requestJson) {
+    /**
+     * protected 只可被繼承類所調用，不可被外部方法所使用
+     * @param requestJson
+     * @return
+     */
+    protected String sendRequest(String requestJson) {
 
         HttpResponse httpResponse;
 

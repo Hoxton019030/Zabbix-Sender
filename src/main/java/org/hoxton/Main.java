@@ -15,20 +15,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         Zabbix zabbix = ZabbixBuilder.createDefault("Admin", "zabbix", "http://localhost/api_jsonrpc.php").build();
-        ItemGetResponse item = zabbix.item().getItem(new ItemGetRequest());
-        List<ItemGetResponse.Result> result = item.getResult();
-        System.out.println("result.size() = " + result.size());
-
-        int count =0;
-        for (ItemGetResponse.Result result1 : result) {
-            if(result1.getName().equals("Available memory")){
-                count ++;
-                System.out.println("result1.getDescription() = " + result1.getDescription());
-
-            }
-        }
-
-        System.out.println("count = " + count);
+        HostGetRequest hostGetRequest = new HostGetRequest();
+        HostGetRequest.Params params = hostGetRequest.getParams();
+        params.setGraphId(1);
+        zabbix.host().getHostResponse(hostGetRequest);
 
 
     }

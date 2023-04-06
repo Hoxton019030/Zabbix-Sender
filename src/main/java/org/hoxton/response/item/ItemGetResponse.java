@@ -14,7 +14,8 @@ import java.util.Map;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ItemGetResponse extends Response {
+public class
+ItemGetResponse extends Response {
     List<Result> result = new ArrayList<>();
 
     @Data

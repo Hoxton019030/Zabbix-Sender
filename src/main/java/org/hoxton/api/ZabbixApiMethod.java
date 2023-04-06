@@ -1,5 +1,7 @@
 package org.hoxton.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -8,6 +10,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.hoxton.util.GsonUtils;
+import org.hoxton.util.JacksonUtils;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
@@ -21,6 +25,10 @@ public class ZabbixApiMethod {
     String url;
     String token;
 
+    ObjectMapper objectMapper = JacksonUtils.objectMapper();
+
+    Gson gson = GsonUtils.gsonBuilder();
+
     public ZabbixApiMethod(String url, String token) {
         this.url = url;
         this.token = token;
@@ -28,6 +36,7 @@ public class ZabbixApiMethod {
 
     /**
      * protected 只可被繼承類所調用，不可被外部方法所使用
+     *
      * @param requestJson
      * @return
      */

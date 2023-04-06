@@ -22,6 +22,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.*;
 
 /**
  * @author Hoxton
@@ -37,12 +38,23 @@ public class Item extends ZabbixApiMethod{
 
     public ItemGetResponse getItem(ItemGetRequest itemGetRequest) throws JsonProcessingException {
         itemGetRequest.setAuth(token);
-        ObjectMapper objectMapper = JacksonUtils.objectMapper();
-        Gson gson = GsonUtils.gsonBuilder();
         String request = gson.toJson(itemGetRequest);
-        System.out.println("request = " + request);
-        String s = sendRequest(request);
-        return objectMapper.readValue(s, ItemGetResponse.class);
+        String result = sendRequest(request);
+        return objectMapper.readValue(result, ItemGetResponse.class);
+    }
+
+    public ItemGetResponse getMonitorItem(List<Integer> hostId) throws JsonProcessingException {
+        ItemGetRequest itemGetRequest = new ItemGetRequest();
+        itemGetRequest.setAuth(token);
+        ItemGetRequest.Params params = itemGetRequest.getParams();
+        Map<String, List<?>> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put("hostid",hostId);
+        params.setFilter(objectObjectHashMap);
+        String request = gson.toJson(itemGetRequest);
+        String result = sendRequest(request);
+        return objectMapper.readValue(result,ItemGetResponse.class);
+
+
 
     }
 

@@ -3,6 +3,7 @@ package org.hoxton.request;
 import org.hoxton.util.ZbxListUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Hoxton
@@ -16,7 +17,6 @@ public class GetRequestCommonParams {
     private List<Integer> nodeids;
     private String output = "extend";
     private Boolean preservekeys;
-    private String search;
     private Boolean searchByAny;
     private Boolean searchWildcardsEnabled;
     private List<SortOrder> sortorder;
@@ -25,6 +25,9 @@ public class GetRequestCommonParams {
     private List<String> sortfield;
     private String selectConditions;
     private String selectOperations;
+
+    private Map<String,List<?>> search;
+    private Map<String,List<?>> filter;
 
     public GetRequestCommonParams() {
     }
@@ -157,11 +160,11 @@ public class GetRequestCommonParams {
         return preservekeys;
     }
 
-    public String getSearch() {
+    public Map<String,List<?>> getSearch() {
         return search;
     }
 
-    public void setSearch(String search) {
+    public void setSearch(Map<String,List<?>> search) {
         this.search = search;
     }
 
@@ -200,6 +203,14 @@ public class GetRequestCommonParams {
     public void setSortOrder(SortOrder order) {
         sortorder = ZbxListUtils.add(sortorder, order);
 
+    }
+
+    public Map<String, List<?>> getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Map<String, List<?>> filter) {
+        this.filter = filter;
     }
 
     public class SortOrder {

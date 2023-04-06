@@ -10,16 +10,14 @@ import org.hoxton.zabbix.Zabbix;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
         Zabbix zabbix = ZabbixBuilder.createDefault("Admin", "zabbix", "http://localhost/api_jsonrpc.php").build();
         HostGetRequest hostGetRequest = new HostGetRequest();
-        HostGetRequest.Params params = hostGetRequest.getParams();
-        params.setGraphId(1);
-        zabbix.host().getHostResponse(hostGetRequest);
-
 
     }
 }

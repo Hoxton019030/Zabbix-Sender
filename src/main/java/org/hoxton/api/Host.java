@@ -19,11 +19,7 @@ public class Host extends ZabbixApiMethod {
     }
     public HostGetResponse getHostResponse(HostGetRequest hostGetRequest) throws JsonProcessingException {
         hostGetRequest.setAuth(token);
-        Gson gson = GsonUtils.gsonBuilder();
-        ObjectMapper objectMapper = JacksonUtils.objectMapper();
-
         String request = gson.toJson(hostGetRequest);
-        System.out.println("request = " + request);
         String result = sendRequest(request);
         return objectMapper.readValue(result, HostGetResponse.class);
     }

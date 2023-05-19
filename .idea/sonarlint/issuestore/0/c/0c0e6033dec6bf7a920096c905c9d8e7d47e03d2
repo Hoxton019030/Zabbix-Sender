@@ -1,0 +1,32 @@
+
+l	java:S116"WRename this field "proxy_hostid" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Şëÿ
+r	java:S116"XRename this field "disable_until" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†¾Õôÿÿÿÿÿ
+p	java:S116 "VRename this field "errors_from" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş¶“øÿÿÿÿ
+m	java:S116""XRename this field "ipmi_authtype" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í´´
+s	java:S116#"YRename this field "ipmi_privilege" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ÈÓŞşÿÿÿÿ
+r	java:S116$"XRename this field "ipmi_username" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( …ÏÏÿÿÿÿÿ
+m	java:S116%"XRename this field "ipmi_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´É€´
+r	java:S116&"]Rename this field "ipmi_disable_until" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•‚„
+s	java:S116'"YRename this field "ipmi_available" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğšÁøÿÿÿÿ
+w	java:S116("]Rename this field "snmp_disable_until" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í­³Œıÿÿÿÿ
+s	java:S116)"YRename this field "snmp_available" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö½ŸÍúÿÿÿÿ
+r	java:S116+"]Rename this field "maintenance_status" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–ª
+u	java:S116,"[Rename this field "maintenance_type" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬›¬şÿÿÿÿ
+u	java:S116-"[Rename this field "maintenance_from" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢íÅûÿÿÿÿ
+u	java:S116."[Rename this field "ipmi_errors_from" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡¢§¿øÿÿÿÿ
+u	java:S116/"[Rename this field "snmp_errors_from" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õµß‘úÿÿÿÿ
+j	java:S1160"URename this field "ipmi_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠŠïŸ
+j	java:S1161"URename this field "snmp_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù•ëÕ
+v	java:S1162"\Rename this field "jmx_disable_until" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ù÷½ÿÿÿÿÿ
+m	java:S1163"XRename this field "jmx_available" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†à”Œ
+t	java:S1164"ZRename this field "jmx_errors_from" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áß¤˜üÿÿÿÿ
+n	java:S1165"TRename this field "jmx_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öÉëÉıÿÿÿÿ
+k	java:S116:"VRename this field "tls_connect" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÉõ½
+o	java:S116;"URename this field "tls_accept" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Ñóııÿÿÿÿ
+j	java:S116<"URename this field "tls_issuer" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß¯ª„
+p	java:S116="VRename this field "tls_subject" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷”ÇÆúÿÿÿÿ
+p	java:S116>"[Rename this field "tls_psk_identity" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Â¨˜
+l	java:S116?"RRename this field "tls_psk" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÏ–Œşÿÿÿÿ
+r	java:S116@"XRename this field "proxy_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê÷Öçúÿÿÿÿ
+m	java:S116A"XRename this field "auto_compress" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢Ñœù
+n	java:S116B"YRename this field "inventory_mode" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åëË
